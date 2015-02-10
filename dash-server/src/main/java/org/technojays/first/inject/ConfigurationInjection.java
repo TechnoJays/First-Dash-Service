@@ -5,6 +5,7 @@ import com.google.inject.Module;
 import com.google.inject.name.Names;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.technojays.first.util.FDC;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,10 +25,10 @@ public class ConfigurationInjection implements Module {
     @Override
     public void configure(Binder binder) {
         Properties appProperties;
-        String configFile = System.getProperty("dash.config.file");
+        String configFile = System.getProperty(FDC.DASH_CONFIG_FILE);
 
         if (configFile != null && !configFile.isEmpty()) {
-            logger.debug("Found config file {}.", configFile);
+            logger.debug("Using config file {}.", configFile);
             appProperties = new Properties();
             try {
                 appProperties.load(new FileReader(configFile));
@@ -38,12 +39,14 @@ public class ConfigurationInjection implements Module {
         } else {
             logger.debug("Configuring using environment properties");
             appProperties = System.getProperties();
-            /**
-             * Uncomment to see loaded environment properties - All properties are loaded from environment on Heroku
-             * See system.properties file for more information
-            for(String propertyName : appProperties.stringPropertyNames()){
-                logger.debug("Property: {} - {}", propertyName, appProperties.getProperty(propertyName));
-            }**/
+        }
+
+        /**
+         * Uncomment to see loaded environment properties - All properties are loaded from environment on Heroku
+         * See system.properties file for more information
+         */
+        for(String propertyName : appProperties.stringPropertyNames()){
+            logger.debug("Property: {} - {}", propertyName, appProperties.getProperty(propertyName));
         }
 
         // binds properties for Guice

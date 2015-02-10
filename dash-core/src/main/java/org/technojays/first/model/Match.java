@@ -7,24 +7,25 @@ import java.util.Set;
 /**
  * @author DaPortlyJester
  * @since 1/19/2015
+ *
+ * Entity representing a match at a competition or event
  */
-@Table(name = "matches")
+@Entity
+@Table(name = "matches", schema = "first")
 public class Match {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @Column(name = "match_number")
-    private Long matchNumber;
+    private Long matchNum;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "game_id")
     @JoinColumn(name = "id")
     private Game game;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "event_id")
     @JoinColumn(name = "id")
     private Event event;
 

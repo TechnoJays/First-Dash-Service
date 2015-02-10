@@ -7,6 +7,7 @@ import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Module;
 import com.google.inject.Provides;
+import org.technojays.first.DashAppConfig;
 
 import javax.inject.Singleton;
 
@@ -35,6 +36,5 @@ public class JSONInjection implements Module {
 
     @Override
     public void configure(Binder binder) {
-        //Nothing to configure, see provides methods
     }
 }

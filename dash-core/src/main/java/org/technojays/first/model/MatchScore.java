@@ -6,12 +6,13 @@ import javax.persistence.*;
  * @author DaPortlyJester
  * @since 1/19/2015
  */
+@Entity
 @Table(name = "match_score")
 public class MatchScore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", unique = true, nullable = true)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
