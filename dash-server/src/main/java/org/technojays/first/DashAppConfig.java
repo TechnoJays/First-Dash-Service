@@ -2,6 +2,7 @@ package org.technojays.first;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.persist.PersistService;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.jvnet.hk2.guice.bridge.api.GuiceBridge;
@@ -9,6 +10,7 @@ import org.jvnet.hk2.guice.bridge.api.GuiceIntoHK2Bridge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.technojays.first.inject.ConfigurationInjection;
+import org.technojays.first.inject.DashGuiceH4Module;
 import org.technojays.first.inject.JSONInjection;
 
 import javax.inject.Inject;
@@ -35,8 +37,11 @@ public class DashAppConfig extends ResourceConfig {
         logger.info("Building Injectors");
         Injector injector = Guice.createInjector(
                 new ConfigurationInjection(),
+                new DashGuiceH4Module(),
                 new JSONInjection()
         );
+
+        PersistentInit persistenceInit = new PersistentInit();
 
         GuiceBridge.getGuiceBridge().initializeGuiceBridge(serviceLocator);
 
@@ -44,4 +49,18 @@ public class DashAppConfig extends ResourceConfig {
         guiceBridge.bridgeGuiceInjector(injector);
     }
 
+    /**
+     * Initialize Persistence Servoce
+     */
+    public class PersistentInit {
+
+        @Inject
+        PersistentInit(PersistService service) {
+            service.start();
+        }
+
+        PersistentInit(){
+
+        }
+    }
 }

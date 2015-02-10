@@ -43,6 +43,18 @@
             <version>${hk2.version}</version>
         </dependency>
 
+        <!-- Guice persist for Hibernate Integration and Guice Servlet for servlet integration -->
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-persist</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+
         <!--
         Because moxy gets a teabag ...
         Jackson (FasterXml) for Joda and Guice Injection JSON Support -->
@@ -74,11 +86,21 @@
             <artifactId>jersey-media-moxy</artifactId>
         </dependency> -->
 
-        <!-- Hibernate -->
+        <!-- Hibernate and Search Version-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>${hibernate.search.version}</version>
         </dependency>
 
         <!-- Jetty is an optional embedded server that TODO will be used as part of the test framework *shameface* -->
@@ -103,6 +125,12 @@
             <version>${dash.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+        </dependency>
+
         <!-- LOL WUT? -->
         <dependency>
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
@@ -111,10 +139,24 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
+
+        <!-- Test Dependencies -->
+        <!-- Jukito Test Dependencies -->
+        <dependency>
+            <groupId>org.jukito</groupId>
+            <artifactId>jukito</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.185</version>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>first-dash</finalName>
+        <finalName>${artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
