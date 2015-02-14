@@ -1,7 +1,8 @@
 package org.technojays.first.service;
 
 /**
- * Created by DaPortlyJester on 1/17/2015.
+ * @author  Derelle.Redmond
+ * @since    1/17/2015.
  */
 public interface GameService {
 }

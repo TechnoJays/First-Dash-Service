@@ -14,7 +14,9 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * @author Derelle.Redmond
- * @since 2/7/2015.
+ * @since 2/7/2015
+ *
+ * Tests the Dash Guice Hibernate Module Module
  */
 @RunWith(JukitoRunner.class)
 public class DashGuiceH4ModuleH2Test {

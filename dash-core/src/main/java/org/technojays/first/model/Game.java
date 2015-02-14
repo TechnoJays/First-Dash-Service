@@ -13,6 +13,7 @@ import java.time.Year;
 @Entity
 @Table(name = "games", schema = "first")
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", unique = true, nullable = false)

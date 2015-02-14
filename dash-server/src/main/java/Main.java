@@ -21,7 +21,7 @@ public class Main {
         try {
             Configuration configuration = new Configuration();
             configuration.configure();
-
+            // TODO: Implement new-hotness
             serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
             ourSessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {

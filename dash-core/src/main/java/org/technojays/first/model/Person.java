@@ -4,7 +4,7 @@ package org.technojays.first.model;
  * @author derelle.redmond
  * @since 1/24/15.
  */
-public class AwardWinner {
+public class Person {
 
     Long id;
 

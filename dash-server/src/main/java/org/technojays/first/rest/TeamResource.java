@@ -1,19 +1,17 @@
 package org.technojays.first.rest;
 
-import com.google.common.base.Strings;
-import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.technojays.first.exception.DashException;
 import org.technojays.first.model.Team;
 import org.technojays.first.service.TeamService;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,32 +20,31 @@ import java.util.List;
  * <p/>
  * REST endpoint for retrieving team information
  */
-@Path("team")
-public class TeamResource extends DashResource{
+@Path("teams")
+public class TeamResource extends DashResource {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private TeamService teamService;
 
     @Inject
-    public TeamResource(TeamService teamService){
+    public TeamResource(TeamService teamService) {
         this.teamService = teamService;
     }
 
     /**
      * Get team by FIRST Dash Id
      *
-     * @param idParam Id of the team
+     * @param teamNumParam Id of the team
      * @return Team associated with given system id number
      * @throws DashException
      */
     @GET
-    @Path("/{id}")
+    @Path("/{teamNum}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Team getTeam(@PathParam("id") String idParam) throws DashException {
-        logger.debug("Getting team by id {}", idParam);
-        Long id = getLongFromParameter(idParam);
-        Team team = teamService.getTeamById(id);
-        return team;
+    public Team getTeam(@PathParam("teamNum") String teamNumParam) throws DashException {
+        logger.debug("Getting team by teamNumber {}", teamNumParam);
+        Long teamNum = getLongFromParameter(teamNumParam);
+        return teamService.getTeamByTeamNumber(teamNum);
     }
 
     /**
@@ -60,23 +57,25 @@ public class TeamResource extends DashResource{
     public List<Team> getTeams() {
         logger.debug("Getting full list of teams");
         List<Team> teams = teamService.getTeams();
+        if(teams == null || teams.isEmpty()) {
+            return null;
+        }
         return teams;
     }
 
     /**
-     * Get team by team number
+     * Get team by FIRST Dash id number
      *
-     * @param teamNumber Number associated with the team by FIRST
+     * @param idParam Number associated with the team by FIRST
      * @return Team associated with team number
      * @throws DashException
      */
     @GET
-    @Path("/number/{number}")
+    @Path("/id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Team getTeamByTeamNumber(@PathParam("number") String teamNumber) throws DashException {
-        logger.debug("Getting team by team number {}", teamNumber);
-        Long teamNum = getLongFromParameter(teamNumber);
-        Team team = teamService.getTeamByTeamNumber(teamNum);
-        return team;
+    public Team getTeamByTeamNumber(@PathParam("id") String idParam) throws DashException {
+        logger.debug("Getting team by id {}", idParam);
+        Long id = getLongFromParameter(idParam);
+        return teamService.getTeamById(id);
     }
 }
