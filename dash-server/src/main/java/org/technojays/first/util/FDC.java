@@ -4,7 +4,7 @@ package org.technojays.first.util;
  * @author Derelle.Redmond
  * @since 2/7/2015.
  *
- * FIRST DASH Contants File
+ * FIRST DASH Constants File
  */
 public class FDC {
 
@@ -19,4 +19,6 @@ public class FDC {
     public final static String H4_MANAGER = "dash_manager";
     public static final String DASH_H4_CONFIG_FILE = "dash.h4.config.file";
     public static final String DASH_CONFIG_FILE = "dash.config.file";
+
+    public final static String PERSISTENCE_FILTER = "/*";
 }

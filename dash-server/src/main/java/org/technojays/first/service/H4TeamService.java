@@ -23,8 +23,8 @@ public class H4TeamService implements TeamService {
     }
 
     @Override
-    public Team getTeamByTeamNumber(Long teamNumber) {
-        return teamDAO.getByTeamNumber(teamNumber);
+    public Team getTeamByTeamNumber(Long teamNum) {
+        return teamDAO.getByTeamNumber(teamNum);
     }
 
     @Override

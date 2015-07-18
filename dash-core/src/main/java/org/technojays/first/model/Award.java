@@ -14,5 +14,5 @@ public class Award {
 
     Long teamId;
 
-    AwardWinner winner;
+    Person winner;
 }

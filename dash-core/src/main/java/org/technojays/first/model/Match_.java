@@ -1,4 +1,4 @@
-package org.technojays.first.model.metamodel;
+package org.technojays.first.model;
 
 import org.technojays.first.model.*;
 
@@ -19,6 +19,6 @@ public class Match_ {
     public static volatile SingularAttribute<Match, Event> event;
     public static volatile SingularAttribute<Match, ZonedDateTime> start;
     public static volatile SingularAttribute<Match, MatchType> type;
-    public static volatile SetAttribute<Match, Team> teams;
+    public static volatile SetAttribute<Match, Ally> allies;
     public static volatile SetAttribute<Match, MatchScore> scores;
 }

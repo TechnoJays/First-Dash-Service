@@ -24,13 +24,14 @@
         <sourceJdk>1.8</sourceJdk>
         <maven.compiler.version>3.2</maven.compiler.version>
         <maven.war.version>2.6</maven.war.version>
+        <maven.surefire.version>2.18.1</maven.surefire.version>
         <dash.version>1.0-SNAPSHOT</dash.version>
 
         <jersey.version>2.15</jersey.version>
         <hk2.version>2.3.0</hk2.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
         <jackson.version>2.4.1</jackson.version>
-        <jackson.hibernate.version>2.4.0</jackson.hibernate.version>
+        <jackson.hibernate.version>2.5.1</jackson.hibernate.version>
 
         <guice.version>4.0-beta5</guice.version>
         <guava.version>18.0</guava.version>
@@ -44,7 +45,7 @@
     </properties>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -54,6 +55,11 @@
                     <target>${targetJdk}</target>
                     <encoding>UTF-8</encoding>
                     <debug>true</debug>
+                    <!--
+                    <compilerArguments>
+                        <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                    </compilerArguments>
+                    -->
                 </configuration>
             </plugin>
 
@@ -63,6 +69,19 @@
                 <version>${maven.war.version}</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <dash.config.file>/etc/dash/application.properties</dash.config.file>
+                        <dash.h4.config.file>/etc/dash/h4.properties</dash.h4.config.file>
+                        <buildDirectory>${project.build.directory}</buildDirectory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

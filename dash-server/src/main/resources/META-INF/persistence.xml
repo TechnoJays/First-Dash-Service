@@ -6,6 +6,11 @@
     <persistence-unit name="dash_manager">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.technojays.first.model.Team</class>
+        <class>org.technojays.first.model.Match</class>
+        <class>org.technojays.first.model.Ally</class>
+        <class>org.technojays.first.model.Event</class>
+        <class>org.technojays.first.model.Game</class>
+        <class>org.technojays.first.model.MatchScore</class>
         <!--<class>org.technojays.first.model.Match</class>-->
         <properties>
             <!-- Disable Second Level Cache -->

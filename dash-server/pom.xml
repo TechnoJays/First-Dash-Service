@@ -12,21 +12,8 @@
     <artifactId>dash-server</artifactId>
     <packaging>war</packaging>
 
-    <!--
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement> -->
-
     <dependencies>
-        <!--  Jersey Servlet Container, Server Base, and guice bridge for hk2 -->
+        <!--  Jersey Servlet Container, Server Base, and Guice bridge for hk2 -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -79,19 +66,20 @@
             <version>${jackson.hibernate.version}</version>
         </dependency>
 
-        <!-- uncomment this to have your face eaten by the evil moxy piranha villagers from sahara oasis
-        This is suggested by Jersey, *unlike button*
+        <!-- uncomment this to have your face eaten by the evil moxy piranha villagers from
+        the sahara oasis. This is suggested by Jersey, *unlike button*
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency> -->
 
-        <!-- Hibernate and Search Version-->
+        <!-- Hibernate Search, Validation, and Connection Pooling -->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+            <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -103,20 +91,6 @@
             <version>${hibernate.search.version}</version>
         </dependency>
 
-        <!-- Jetty is an optional embedded server that TODO will be used as part of the test framework *shameface* -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-webapp</artifactId>
-            <version>${jetty.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Include core of dash, should include library to algorithmically calculate competition standings and
          base models of FIRST business logic-->
         <dependency>
@@ -125,6 +99,7 @@
             <version>${dash.version}</version>
         </dependency>
 
+        <!-- Postgresql Driver for Postgresql Database support -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -141,22 +116,38 @@
         </dependency>
 
         <!-- Test Dependencies -->
+        <!-- Jetty is an optional embedded server that TODO will be used as part of the test framework *shameface* -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Jukito Test Dependencies -->
         <dependency>
             <groupId>org.jukito</groupId>
             <artifactId>jukito</artifactId>
             <version>1.4.1</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.185</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

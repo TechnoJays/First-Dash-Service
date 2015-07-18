@@ -1,4 +1,4 @@
-package org.technojays.first.model.metamodel;
+package org.technojays.first.model;
 
 import org.technojays.first.model.FIRSTProgram;
 import org.technojays.first.model.Game;
